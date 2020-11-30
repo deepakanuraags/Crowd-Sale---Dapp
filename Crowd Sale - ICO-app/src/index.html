@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Blind Bidding App</title>
+  <link href='https://fonts.googleapis.com/css?family=Lobster|Open+Sans:400,400italic,300italic,300|Raleway:300,400,600'
+    rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
+  <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="css/toastr.min.css">
+  <link rel="stylesheet" type="text/css" href="css/animate.css">
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+  <link rel="icon" href="/img/favicon.ico">
+</head>
+
+<body class="bodyBg">
+  <div class="content">
+    <div id="controls">
+      <div class="pictureAndWallet">
+        <ul class="list-group userDetails">
+          <li class="list-group-item d-flex justify-content-between align-items-center">
+            Your Address:&nbsp;
+            <span id="userAddress" class="badge badge-primary badge-pill"></span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between align-items-center">
+            ETH :&nbsp;
+            <span id="userETH" class="badge badge-primary badge-pill">class="badge badge-primary badge-pill"></span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between align-items-center">
+            UB Crypto :&nbsp;
+            <span id="userUBCrypto" class="badge badge-primary badge-pill"></span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between align-items-center">
+            Crowd Sale Enabled :&nbsp;
+            <span id="crowdSaleEnabled" class="badge badge-primary badge-pill"></span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between align-items-center">
+            Crowd Sale End Time :&nbsp;
+            <span id="endTime" class="badge badge-primary badge-pill"></span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between align-items-center">
+            Current Exchange Rate :&nbsp;
+            <span id="currentExchangeRate" class="badge badge-primary badge-pill"></span>
+          </li>
+        </ul>
+        <img src="./img/UBCryptoText.png" class="UBCryptoImage"></img>
+      </div>
+      <div class="bs-example">
+        <ul id="myTab" class="nav nav-tabs">
+          <li class="nav-item">
+            <a href="#home" class="nav-link active" data-toggle="tab">Company CEO</a>
+          </li>
+          <li class="nav-item">
+            <a href="#profile" class="nav-link" data-toggle="tab">Bonus Token Registration</a>
+          </li>
+          <li class="nav-item">
+            <a href="#messages" class="nav-link" data-toggle="tab">Buy Tokens</a>
+          </li>
+          <li class="nav-item">
+            <a href="#buyBonusTokens" class="nav-link" data-toggle="tab">Buy Bonus Tokens</a>
+          </li>
+        </ul>
+        <div class="tab-content">
+          <div class="tab-pane fade show active" id="home">
+            <form class="form">
+              <div class="columnFlex">
+                <h4 class="mt-2">Company CEO Actions</h4>
+                <div><button id="enableCrowdSale" type="button" class="btn btn-primary">Enable Crowd Sale</button></div>
+                <div class="input-group mb-3">
+                  <input type="text" id="exhangeRate" class="form-control" placeholder="Update Exchange Rate"
+                    aria-label="Update Exchange Rate" aria-describedby="button-addon2" required>
+                  <div class="input-group-append">
+                    <button class="btn btn-outline-secondary" type="button" id="updateExhangeRate">Update ETH to UB Crypto Exchange
+                      Rate</button>
+                  </div>
+                </div>
+                <div class="input-group mb-3">
+                  <input type="text" id="updateEndTimeVal" class="form-control" placeholder="Update Crowd Sale End Time"
+                    aria-label="Update End Time" aria-describedby="button-addon2" required>
+                  <div class="input-group-append">
+                    <button class="btn btn-outline-secondary" type="button" id="updateEndTime">Update Crowd Sale End
+                      Time In Secs</button>
+                  </div>
+                </div>
+                <div id="exhangeRateText" class="displayNone redColor">Enter a valid Number</div>
+                <h5>Only the contract creator/ company ceo can do these actions, for other accounts it will error out</h5>
+              </div>
+            </form>
+          </div>
+          <div class="tab-pane fade" id="messages">
+            <div class="columnFlex">
+              <h4 class="mt-2">Buy Tokens</h4>
+              <div class="input-group mb-3">
+                <input type="text" class="form-control" id="numberOfTokens" placeholder="Enter Number of Tokens to buy"
+                  aria-label="Enter Number of Tokens to buy" aria-describedby="button-addon2">
+                <div class="input-group-append">
+                  <button class="btn btn-outline-secondary" type="button" id="buyTokens">Buy Tokens</button>
+                </div>
+              </div>
+              <h5>Enter Number of tokens to Buy, it will be converted to ETH according to current exhange rate</h5>
+            </div>
+          </div>
+          <div class="tab-pane fade" id="profile">
+            <div class="columnFlex">
+              <h4 class="mt-2">Register For Bonus Tokens</h4>
+              <div class="input-group mb-3">
+                <input type="text" class="form-control" id="bonusTokenPassword" placeholder="Enter a secure password"
+                  aria-label="Enter a secure password" aria-describedby="button-addon2">
+                <div class="input-group-append">
+                  <button class="btn btn-outline-secondary" id="registerForBonusTokens" type="button"
+                    id="button-addon2">Register for bonus tokens</button>
+                </div>
+              </div>
+              <h5>You can register for bonus tokens purchase here, it is a one time cost and it will cost you <strong>0.2
+                  ETH</strong>. You also need to enter a password, that can be used to purchase bonus tokens</h5>
+            </div>
+            <!-- <h4 class="mt-2">You have already registered for Bonus Tokens</h4> -->
+          </div>
+          <div class="tab-pane fade" id="messages">
+            <div class="columnFlex">
+              <h4 class="mt-2">Buy Tokens</h4>
+              <div class="input-group mb-3">
+                <input type="text" class="form-control" id="numberOfTokens" placeholder="Enter Number of Tokens to buy"
+                  aria-label="Enter Number of Tokens to buy" aria-describedby="button-addon2">
+                <div class="input-group-append">
+                  <button class="btn btn-outline-secondary" type="button" id="buyTokens">Buy Tokens</button>
+                </div>
+              </div>
+              <h5>Enter Number of tokens to Buy, it will be converted to ETH according to current exhange rate</h5>
+            </div>
+          </div>
+          <div class="tab-pane fade" id="buyBonusTokens">
+            <div class="columnFlex">
+              <h4 class="mt-2">Buy Bonus Tokens</h4>
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <button class="btn btn-outline-secondary" id="buyTokensWithBonus" type="button">Buy Bonus
+                    Tokens</button>
+                </div>
+                <input type="text" aria-label="First name" class="form-control" id="passwordForBonusTokens"
+                  placeholder="Enter password">
+                <input type="text" aria-label="Last name" class="form-control" id="numberOfBonusTokens"
+                  placeholder="Number of tokens">
+              </div>
+              <h5>Enter the password you created while registering for bonus tokens and enter number of tokens to be bought, you will get 120% number of tokens back, 20% is bonus</h5>
+            </div>
+          </div>
+        </div>
+        <hr>
+        <!-- <p class="text-info"><em>Click on any other tab to see how it works.</em></p>
+        <p class="active-tab"><strong>Active Tab</strong>: <span></span></p>
+        <p class="previous-tab"><strong>Previous Tab</strong>: <span></span></p> -->
+      </div>
+    </div>
+    <!-- <ul class="list-group userDetails">
+      <li class="list-group-item list-group-item-success">Your Address:&nbsp;<span id="userAddress"></span></li>
+      <li class="list-group-item list-group-item-primary">ETH :&nbsp;<span id="userETH"></span></li>
+      <li class="list-group-item list-group-item-danger">UB Crypto :&nbsp;<span id="userUBCrypto"></span></li>
+      
+      <li class="list-group-item list-group-item-info">Crowd Sale Enabled :&nbsp;<span id="crowdSaleEnabled"></span></li>
+      <li class="list-group-item list-group-item-info">Crowd Sale End Time :&nbsp;<span id="endTime"></span></li>
+    </ul> -->
+
+  </div>
+
+  <script src="js/dist/jquery.min.js"></script>
+  <script src="js/dist/bootstrap.min.js"></script>
+  <script src="js/dist/jquery.countdown.min.js"></script>
+  <script src="js/dist/wow.js"></script>
+  <script src="js/dist/custom.js"></script>
+  <script src="js/dist/bootstrap.min.js"></script>
+  <script src="js/dist/toastr.min.js"></script>
+  <script src="js/dist/web3.min.js"></script>
+  <script src="js/dist/truffle-contract.js"></script>
+  <script src="js/app.js"></script>
+
+</body>
+
+</html>
